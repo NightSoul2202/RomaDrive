@@ -1,0 +1,31 @@
+﻿@model List<RomaDrive.Models.FileModel>
+
+<h1>Your files</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model)
+            {
+                <tr>
+                    <td>@file.Title</td>
+                    <td>
+                        <a class="btn btn-primary" href="@Url.Action("Download", "GetFiles", new { id = file.IdFile })">Download</a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "GetFiles", new { id = file.IdFile })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No files found.</p>
+}
